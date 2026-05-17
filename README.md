@@ -1,4 +1,4 @@
-# Spatial capture-recapture with penalized regression splines to flexibl model wildlife density and distribution
+# Spatial capture-recapture with penalized regression splines
 
 This repository contains code and data to accompany the following paper:
 
