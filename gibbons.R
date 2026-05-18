@@ -51,7 +51,6 @@ fit.sm <- fit.scr.smooth(capt, traps, mask.full,
                          unsuitable = list(FOREST_COVER = "NOT_DENSE"),
                          n.occasions = 1, start.par = start.par, detfn = "HHN",
                          tmb.dir = "fitting-functions/tmb")
-
 summary(fit.sm$sdrep)
 
 ## For comparison, another model with a log-linear effect of village.
@@ -65,17 +64,14 @@ fit.sm2 <- fit.scr.smooth(capt, traps, mask.full,
                               tmb.dir = "fitting-functions/tmb")
 summary(fit.sm2$sdrep)
 
-#save.image("gibbon-fits.RData")
-load("gibbon-fits.RData")
-
-## Estimated smooth village effect for 0-15 km.
+## Estimated smooth village effect for 0-15 km for both models.
 village.xx <- seq(0, 15, length.out = 100)
-pred.village.lin <- fit.sm2$fit$par[1] + fit.sm2$fit$par[3]*village.xx
-pred.village.lin <- pred.village.lin - mean(pred.village.lin)
-
 pred.village.sm <- predict.effect(fit.sm, data.frame(VILLAGE = village.xx),
                                   which.smooth = 2)
 pred.village.sm <- pred.village.sm - mean(pred.village.sm)
+pred.village.lin <- fit.sm2$fit$par[1] + fit.sm2$fit$par[3]*village.xx
+pred.village.lin <- pred.village.lin - mean(pred.village.lin)
+
 
 ## Estimated smooth spatial effect over the whole region.
 pred.spatial <- predict.effect(fit.sm, fine.mask.df, which.smooth = 1)
