@@ -79,8 +79,12 @@ Type objective_function<Type>::operator() ()
     matrix<Type> traps = all_traps(sess);
     int n_traps = all_n_traps(sess);
     matrix<Type> mask_dists = all_mask_dists(sess);
-    matrix<Type> bearing = all_bearing(sess);
-    matrix<Type> mask_bearings = all_mask_bearings(sess);
+    int bearing_index = 0;
+    if (do_bearing){
+      bearing_index = sess;
+    }
+    matrix<Type> bearing = all_bearing(bearing_index);
+    matrix<Type> mask_bearings = all_mask_bearings(bearing_index);
     int n_mask = all_n_mask(sess);
     Type mask_area = all_mask_areas(sess);
     matrix<Type> X_mm = all_X_mm(sess);
