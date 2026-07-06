@@ -1,5 +1,4 @@
 library(ascr)
-library(fields)
 library(RColorBrewer)
 library(sp)
 library(viridis)
